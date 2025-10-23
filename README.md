@@ -21,6 +21,7 @@ react-native is a Javascript library that we will be using for coding the react 
 
 * Open Windows powershell as an Administrator
 * Execute the following chocolatey command to install Nodejs and OpenJDK: ```choco install -y nodejs-lts```
+* choco install microsoft-openjdk17 --version=17.0.13
 * You can check the version of node and npm using commands: ```node --version``` and ```npm -v```
 * You can also install python2 using: ```choco install -y python2'''
 * To check the list of installed choco software, use the command: ```choco list```. The output for this on my machine looks like the following: ```

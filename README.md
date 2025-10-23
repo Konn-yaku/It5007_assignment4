@@ -20,7 +20,7 @@ Chocolatey is a package manager on Windows to install and manage packages. We ca
 react-native is a Javascript library that we will be using for coding the react native client, intended to be executed on the mobile device. For this, we need to install Nodejs, which is a Javascript runtime environment on our development laptop. Python2 is required by the Metro server that helps us install the compiled app code on the physical/emulated android device. Additionally, you need to install OpenJDK (library for compiling the Java code) that will eventually be installed on the Android device.
 
 * Open Windows powershell as an Administrator
-* Execute the following chocolatey command to install Nodejs and OpenJDK: ```choco install -y nodejs-lts microsoft-openjdk11```
+* Execute the following chocolatey command to install Nodejs and OpenJDK: ```choco install -y nodejs-lts```
 * You can check the version of node and npm using commands: ```node --version``` and ```npm -v```
 * You can also install python2 using: ```choco install -y python2'''
 * To check the list of installed choco software, use the command: ```choco list```. The output for this on my machine looks like the following: ```

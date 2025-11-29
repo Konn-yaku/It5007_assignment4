@@ -23,7 +23,7 @@ import {
   async function graphQLFetch(query, variables = {}) {
     try {
         /****** Q4: Start Coding here. State the correct IP/port******/
-        const response = await fetch('http://192.168.10.122:3000/graphql', {
+        const response = await fetch('http://10.0.2.2:3000/graphql', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ query, variables })
@@ -71,36 +71,60 @@ const width= [40,80,80,80,80,80,200];
 
 function IssueRow(props) {
     const issue = props.issue;
-    {/****** Q2: Coding Starts here. Create a row of data in a variable******/}
-    {/****** Q2: Coding Ends here.******/}
+
+    /****** Q2: Coding Starts here. Create a row of data in a variable******/
+        // 定义每一行的数据数组，顺序必须与表头对应：ID, Status, Owner, Created, Effort, Due, Title
+    const rowData = [
+            issue.id,
+            issue.status,
+            issue.owner,
+            issue.created ? issue.created.toDateString() : '',
+            issue.effort,
+            issue.due ? issue.due.toDateString() : '',
+            issue.title
+        ];
+    /****** Q2: Coding Ends here.******/
+
     return (
-      <>
-      {/****** Q2: Start Coding here. Add Logic to render a row  ******/}
-      
-      {/****** Q2: Coding Ends here. ******/}  
-      </>
+        <>
+            {/****** Q2: Start Coding here. Add Logic to render a row  ******/}
+            {/* 使用 Table 组件库的 Row 来渲染这一行，传入上面定义的数据和全局定义的 width 数组 */}
+            <Row data={rowData} widthArr={width} style={styles.row} textStyle={styles.text} />
+            {/****** Q2: Coding Ends here. ******/}
+        </>
     );
-  }
-  
-  
-  function IssueTable(props) {
+}
+
+
+function IssueTable(props) {
     const issueRows = props.issues.map(issue =>
-      <IssueRow key={issue.id} issue={issue} />
+        <IssueRow key={issue.id} issue={issue} />
     );
 
     {/****** Q2: Start Coding here. Add Logic to initalize table header  ******/}
+    // 定义表头显示的文字
+    const tableHead = ['ID', 'Status', 'Owner', 'Created', 'Effort', 'Due Date', 'Title'];
+    {/****** Q2: Coding Ends here. ******/}
 
-    {/****** Q2: Coding Ends here. ******/}
-    
-    
+
     return (
-    <View style={styles.container}>
-    {/****** Q2: Start Coding here to render the table header/rows.**********/}
-    
-    {/****** Q2: Coding Ends here. ******/}
-    </View>
+        <View style={styles.container}>
+            {/****** Q2: Start Coding here to render the table header/rows.**********/}
+            {/* 使用 ScrollView 实现水平滚动，防止表格内容超出屏幕被截断 */}
+            <ScrollView horizontal={true}>
+                <View>
+                    <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
+                        {/* 渲染表头 */}
+                        <Row data={tableHead} widthArr={width} style={styles.header} textStyle={styles.text}/>
+                        {/* 渲染所有数据行 */}
+                        {issueRows}
+                    </Table>
+                </View>
+            </ScrollView>
+            {/****** Q2: Coding Ends here. ******/}
+        </View>
     );
-  }
+}
 
   
   class IssueAdd extends React.Component {
